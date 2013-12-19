@@ -13,6 +13,10 @@ class ReadData:
         var = self.__ExtractData2NCFile__(NCFile, NCVar)
         return var         
     
+    def __ResolvAliasVars__(self, IdiomaticName):
+        VarsAliasList = {'Salinity' : 's', 'Elevation' :'elb' , 'VelVerticalMeanInX' : 'uab' ,'VelVerticalMeanInY': 'vab'}
+        return VarsAliasList(IdiomaticName)
+    
     def __ExtractData2NCFile__(self, NCFile , Var):
         NCData = Dataset(NCFile, 'r')
         Var = NCData.variables[Var][:]

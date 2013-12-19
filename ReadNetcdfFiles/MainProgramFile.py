@@ -20,3 +20,4 @@ Vars = [ RD.ReadNCVar(NCFile,v) for v in NCVars ]
 first2DData = [ RD.GetFirst2DData(v) for v in Vars]
 
 plt.PlotVar(first2DData)
+
