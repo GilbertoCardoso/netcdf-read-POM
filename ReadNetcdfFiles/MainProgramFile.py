@@ -5,9 +5,11 @@ Program to read Necdf Data Files
 '''
 
 import DataTools as DataTools
+import PlotTools as PlotTools 
+
 
 RD = DataTools.ReadData()
-plt = DataTools.PlotTools()
+plt = PlotTools.PlotTools()
 
 NCFile= 'urias2.0002.nc'
 NCVars = ['s', 'elb', 'uab', 'vab']
