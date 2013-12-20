@@ -9,13 +9,14 @@ import numpy as np
 
 class ReadData:
     
-    def ReadNCVar(self, NCFile , NCVar):
+    def ReadVarsInNCFile(self, NCFile , NCVar):
+        NCVar= self.__ResolveAliasVars__(NCVar)
         var = self.__ExtractData2NCFile__(NCFile, NCVar)
         return var         
     
-    def __ResolvAliasVars__(self, IdiomaticName):
+    def __ResolveAliasVars__(self, IdiomaticName):
         VarsAliasList = {'Salinity' : 's', 'Elevation' :'elb' , 'VelVerticalMeanInX' : 'uab' ,'VelVerticalMeanInY': 'vab'}
-        return VarsAliasList(IdiomaticName)
+        return VarsAliasList[ IdiomaticName]
     
     def __ExtractData2NCFile__(self, NCFile , Var):
         NCData = Dataset(NCFile, 'r')
@@ -23,7 +24,7 @@ class ReadData:
         NCData.close()
         return Var
         
-    def GetFirst2DData(self, Var):
+    def Convert3DVarsIn2D(self, Var):
         Var = self.__RemoveTimeDimesion__(Var)      
         if self.__is3DVar__(Var): 
             Var = self.__GetVerticalAverage__(Var)
