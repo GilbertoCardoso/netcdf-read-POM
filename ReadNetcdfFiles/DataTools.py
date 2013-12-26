@@ -9,7 +9,7 @@ import numpy as np
 
 class ReadData:
     
-    def ReadVarsInNCFile(self, NCFile , NCVar):
+    def ReadTrasersInNCFile(self, NCFile , NCVar):
         NCVar= self.__ResolveAliasVars__(NCVar)
         var = self.__ExtractData2NCFile__(NCFile, NCVar)
         return var         
@@ -24,7 +24,7 @@ class ReadData:
         NCData.close()
         return Var
         
-    def Convert3DVarsIn2D(self, Var):
+    def Convert3DTrasersIn2D(self, Var):
         Var = self.__RemoveTimeDimesion__(Var)      
         if self.__is3DVar__(Var): 
             Var = self.__GetVerticalAverage__(Var)

@@ -10,13 +10,12 @@ import PlotTools as PlotTools
 RD = DataTools.ReadData()
 PLT = PlotTools.PlotTools()
 
-NCFile= 'urias2.0002.nc'
-AnalyzedVars  = ['Salinity' , 'Elevation', 'VelVerticalMeanInX','VelVerticalMeanInY']
+NCFile= '/home/gilk/Almacen/D/tesis/Videos/urias2.0002.nc'
 
+AnalyzeTrasers  = ['Salinity' , 'Elevation', 'VelVerticalMeanInX','VelVerticalMeanInY']
 
-Vars = [ RD.ReadVarsInNCFile(NCFile,v) for v in AnalyzedVars ]
+Trasers = [ RD.ReadTrasersInNCFile(NCFile, Traser) for Traser in AnalyzeTrasers ]
+TrasersIn2D = [ RD.Convert3DTrasersIn2D(traser) for traser in Trasers]
 
-AnalyzedVarsIn2D = [ RD.Convert3DVarsIn2D(v) for v in Vars]
-
-PLT.PlotVar(AnalyzedVarsIn2D)
+PLT.PlotVar(TrasersIn2D)
 
