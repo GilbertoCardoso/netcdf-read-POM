@@ -4,18 +4,20 @@ Program to read Necdf Data Files
 @author: Gilberto Cardoso
 '''
 
-import DataTools as DataTools
-import PlotTools as PlotTools 
-
-RD = DataTools.ReadData()
-PLT = PlotTools.PlotTools()
-
-NCFile= '/home/gilk/Almacen/D/tesis/Videos/urias2.0002.nc'
-
 AnalyzeTrasers  = ['Salinity' , 'Elevation', 'VelVerticalMeanInX','VelVerticalMeanInY']
 
-Trasers = [ RD.ReadTrasersInNCFile(NCFile, Traser) for Traser in AnalyzeTrasers ]
-TrasersIn2D = [ RD.Convert3DTrasersIn2D(traser) for traser in Trasers]
+PathFiles = '/home/gilk/Almacen/R/respaldoGil/gilk/doctorado/trajul2012/purias_2012/out/'
+NameFileExperiment = 'urias2' 
 
-PLT.PlotVar(TrasersIn2D)
+import DataTools as DataTools
+import PlotTools as PlotTools
+import PathsFilesTools as FT 
 
+DT = DataTools.ReadData()
+PlT = PlotTools.PlotTools()
+
+for PathNumber in range(2):
+    DataFileAnalized =  FT.DeterminePathFiles( PathFiles,  NameFileExperiment, PathNumber)
+    Trasers = [ DT.ReadTrasers(DataFileAnalized, Traser) for Traser in AnalyzeTrasers ]
+    TrasersIn2D = [ DT.Convert3DTrasersIn2D(traser) for traser in Trasers]
+    PlT.PlotVar(TrasersIn2D)

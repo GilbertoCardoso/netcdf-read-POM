@@ -9,7 +9,7 @@ import numpy as np
 
 class ReadData:
     
-    def ReadTrasersInNCFile(self, NCFile , NCVar):
+    def ReadTrasers(self, NCFile , NCVar):
         NCVar= self.__ResolveAliasVars__(NCVar)
         var = self.__ExtractData2NCFile__(NCFile, NCVar)
         return var         
